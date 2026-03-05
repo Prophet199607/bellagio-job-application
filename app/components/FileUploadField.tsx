@@ -105,7 +105,7 @@ const FileUploadField = ({
             </label>
 
             {/* Dropzone */}
-            <div className="relative group border border-zinc-100 bg-zinc-50/30 hover:border-[#250026]/20 hover:bg-[#250026]/5 rounded-2xl p-8 transition-all text-center cursor-pointer shadow-sm border-dashed">
+            <div className="relative group border border-zinc-100 bg-white/50 hover:border-[#250026]/20 hover:bg-[#250026]/5 rounded-2xl p-8 transition-all text-center cursor-pointer shadow-sm shadow-zinc-200/50 hover:shadow-md border-dashed">
                 <input
                     type="file"
                     required={required && !files}

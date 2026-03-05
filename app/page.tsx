@@ -86,8 +86,8 @@ export default function JobApplicationForm() {
   // ─── Success Screen ───────────────────────────────────────────────
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-purple-50/30 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl shadow-slate-200 p-12 text-center border border-slate-100">
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+        <div className="w-full max-w-md bg-white shadow-premium p-12 text-center border border-slate-100">
           <div className="w-24 h-24 bg-gradient-to-br from-[#250026] to-[#5a0060] rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl shadow-[#250026]/30">
             <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -100,7 +100,7 @@ export default function JobApplicationForm() {
           </p>
           <button
             onClick={() => window.location.href = "/"}
-            className="w-full py-4 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] transition-all text-sm uppercase tracking-[0.2em] shadow-xl shadow-[#250026]/30 active:scale-[0.98]"
+            className="w-full py-4 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 transition-all text-sm uppercase tracking-[0.2em] shadow-xl shadow-[#250026]/20 active:scale-[0.98]"
           >
             Back to Home
           </button>
@@ -112,8 +112,10 @@ export default function JobApplicationForm() {
   const progress = (step / 2) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50/20 flex items-center justify-center p-4 font-sans">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl shadow-slate-200/80 border border-slate-100 overflow-hidden">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4 font-sans">
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg border border-slate-200 ring-1 ring-slate-200 overflow-hidden relative">
+        {/* Subtle Top Highlight */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#250026] via-[#7c1080] to-[#250026] opacity-30" />
 
         {/* ─ Progress Bar ─ */}
         <div className="h-1 w-full bg-slate-100">
@@ -124,7 +126,7 @@ export default function JobApplicationForm() {
         </div>
 
         {/* ─ Header ─ */}
-        <header className="bg-white px-8 md:px-12 py-6 border-b border-slate-100">
+        <header className="bg-white px-8 md:px-12 py-6 border-b  border-slate-100">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
               <Image src="/b-logo.png" alt="Company Logo" width={120} height={60} className="object-contain h-12 w-auto" priority />
@@ -258,7 +260,7 @@ export default function JobApplicationForm() {
 
                 {/* Job Vacancy */}
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="flex items-center gap-1.5 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">
+                  <label className="flex items-center gap-1.5 text-[10px] font-black text-slate-800 uppercase tracking-[0.2em] ml-1">
                     <span className="text-[#250026] opacity-70">
                       <Icon d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" />
                     </span>
@@ -353,7 +355,7 @@ export default function JobApplicationForm() {
                   type="button"
                   onClick={nextStep}
                   disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.jobVacancy}
-                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] disabled:opacity-30 transition-all shadow-xl shadow-[#250026]/30 text-[10px] uppercase tracking-[0.2em] group active:scale-[0.98]"
+                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-30 transition-all shadow-xl shadow-[#250026]/20 text-[10px] uppercase tracking-[0.2em] group active:scale-[0.98]"
                 >
                   Next Step
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -364,7 +366,7 @@ export default function JobApplicationForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] disabled:opacity-50 transition-all shadow-xl shadow-[#250026]/30 text-[10px] uppercase tracking-[0.2em] active:scale-[0.98]"
+                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-50 transition-all shadow-xl shadow-[#250026]/20 text-[10px] uppercase tracking-[0.2em] active:scale-[0.98]"
                 >
                   {isSubmitting ? (
                     <>
