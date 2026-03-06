@@ -22,6 +22,7 @@ export default function JobApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" | null }>({ text: "", type: null });
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -57,9 +58,10 @@ export default function JobApplicationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!files.cv || !(files.educational && files.educational.length > 0)) {
-      alert("Please upload both CV and at least one Educational Qualification document.");
+      setMessage({ text: "Please upload both CV and at least one Educational Qualification document.", type: "error" });
       return;
     }
+    setMessage({ text: "", type: null });
     setIsSubmitting(true);
     const submissionData = new FormData();
     Object.entries(formData).forEach(([k, v]) => submissionData.append(k, v));
@@ -74,10 +76,10 @@ export default function JobApplicationForm() {
         setIsSubmitted(true);
       } else {
         const err = await response.json();
-        alert(`Failed: ${err.error || "Unknown error"}`);
+        setMessage({ text: `Failed: ${err.error || "Unknown error"}`, type: "error" });
       }
     } catch {
-      alert("An error occurred. Please try again.");
+      setMessage({ text: "An error occurred. Please try again.", type: "error" });
     } finally {
       setIsSubmitting(false);
     }
@@ -167,6 +169,24 @@ export default function JobApplicationForm() {
               <p className="text-sm font-black text-[#250026] uppercase tracking-wider">{step === 1 ? "Personal Profile" : "Document Upload"}</p>
             </div>
           </div>
+
+          {message.text && (
+            <div className={`mb-6 p-4 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-300 ${message.type === "error" ? "bg-red-50 border border-red-100 text-red-600" : "bg-emerald-50 border border-emerald-100 text-emerald-600"
+              }`}>
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${message.type === "error" ? "bg-red-100" : "bg-emerald-100"
+                }`}>
+                {message.type === "error" ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                )}
+              </div>
+              <p className="text-xs font-black uppercase tracking-wider">{message.text}</p>
+              <button onClick={() => setMessage({ text: "", type: null })} className="ml-auto opacity-50 hover:opacity-100 transition-opacity">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {step === 1 ? (
@@ -336,26 +356,26 @@ export default function JobApplicationForm() {
             )}
 
             {/* ─ Navigation ─ */}
-            <div className="flex items-center justify-between pt-8 mt-6 border-t border-slate-100">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-8 mt-6 border-t border-slate-100">
               {step === 2 ? (
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="flex items-center gap-2 px-6 py-3 rounded-2xl border border-slate-200 text-slate-600 font-black hover:bg-slate-50 transition-all text-[10px] uppercase tracking-[0.2em] group"
+                  className="flex items-center justify-center gap-2 px-6 py-4 sm:py-3 rounded-2xl border border-slate-200 text-slate-600 font-black hover:bg-slate-50 transition-all text-[10px] uppercase tracking-[0.2em] group order-2 sm:order-1"
                 >
                   <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
                   Back
                 </button>
-              ) : <div />}
+              ) : <div className="hidden sm:block" />}
 
               {step === 1 ? (
                 <button
                   type="button"
                   onClick={nextStep}
                   disabled={!formData.firstName || !formData.lastName || !formData.email || !formData.jobVacancy}
-                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-30 transition-all shadow-xl shadow-[#250026]/20 text-[10px] uppercase tracking-[0.2em] group active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 px-8 py-4 sm:py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-30 transition-all shadow-xl shadow-[#250026]/20 text-[10px] uppercase tracking-[0.2em] group active:scale-[0.98] w-full sm:w-auto"
                 >
                   Next Step
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -366,22 +386,27 @@ export default function JobApplicationForm() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex items-center gap-2 ml-auto px-8 py-3.5 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-50 transition-all shadow-xl shadow-[#250026]/20 text-[10px] uppercase tracking-[0.2em] active:scale-[0.98]"
+                  className="flex flex-col items-center justify-center px-8 py-4 sm:py-3 rounded-2xl bg-[#250026] text-white font-black hover:bg-[#3d0040] hover:shadow-2xl hover:shadow-[#250026]/40 disabled:opacity-50 transition-all shadow-xl shadow-[#250026]/20 active:scale-[0.98] w-full sm:min-w-[180px] sm:w-auto order-1 sm:order-2"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                      Submitting...
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Submit Application
-                    </>
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em]">
+                    {isSubmitting ? (
+                      <>
+                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Submit Application
+                      </>
+                    )}
+                  </div>
+                  {!isSubmitting && (
+                    <span className="text-[8px] opacity-60 font-medium uppercase mt-0.5 tracking-wider">Finalize your application</span>
                   )}
                 </button>
               )}

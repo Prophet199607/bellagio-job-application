@@ -4,46 +4,46 @@ const path = require('path');
 
 // Basic env parser
 function loadEnv() {
-  try {
-    const envPath = path.resolve(process.cwd(), '.env.local');
-    if (fs.existsSync(envPath)) {
-      const data = fs.readFileSync(envPath, 'utf8');
-      data.split('\n').forEach((line) => {
-        const [key, value] = line.split('=');
-        if (key && value) {
-          process.env[key.trim()] = value.trim();
+    try {
+        const envPath = path.resolve(process.cwd(), '.env.local');
+        if (fs.existsSync(envPath)) {
+            const data = fs.readFileSync(envPath, 'utf8');
+            data.split('\n').forEach((line) => {
+                const [key, value] = line.split('=');
+                if (key && value) {
+                    process.env[key.trim()] = value.trim();
+                }
+            });
+            console.log('Loaded .env.local');
         }
-      });
-      console.log('Loaded .env.local');
+    } catch (e) {
+        console.log('Could not load .env.local, using defaults');
     }
-  } catch (e) {
-    console.log('Could not load .env.local, using defaults');
-  }
 }
 
 loadEnv();
 
 async function main() {
-  const connection = await mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    multipleStatements: true
-  });
+    const connection = await mysql.createConnection({
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        multipleStatements: true
+    });
 
-  try {
-    console.log(
-      `Connected to MySQL server. Creating database if not exists...`
-    );
-    await connection.query(
-      `CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || 'jobportal'}\``
-    );
-    await connection.query(`USE \`${process.env.DB_NAME || 'jobportal'}\``);
-    console.log(`Using database ${process.env.DB_NAME || 'jobportal'}.`);
+    try {
+        console.log(
+            `Connected to MySQL server. Creating database if not exists...`
+        );
+        await connection.query(
+            `CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME || 'jobportal'}\``
+        );
+        await connection.query(`USE \`${process.env.DB_NAME || 'jobportal'}\``);
+        console.log(`Using database ${process.env.DB_NAME || 'jobportal'}.`);
 
-    // Create vacancies table
-    console.log('Creating vacancies table...');
-    await connection.query(`
+        // Create vacancies table
+        console.log('Creating vacancies table...');
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS vacancies (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(150) NOT NULL,
@@ -55,9 +55,9 @@ async function main() {
       );
     `);
 
-    // Create applied table
-    console.log('Creating applied table...');
-    await connection.query(`
+        // Create applied table
+        console.log('Creating applied table...');
+        await connection.query(`
       CREATE TABLE IF NOT EXISTS applied (
         id CHAR(36) PRIMARY KEY,
         first_name VARCHAR(100) NOT NULL,
@@ -78,35 +78,32 @@ async function main() {
       );
     `);
 
-    // Seed vacancies
-    const vacancies = [
-      'Senior Developer',
-      'Junior Developer',
-      'UI/UX Designer',
-      'Project Manager',
-      'DevOps Engineer'
-    ];
+        // Seed vacancies
+        const vacancies = [
+            'Ai_powerd mobile application',
+            'Ai-Powerd Wed development'
+        ];
 
-    console.log('Seeding vacancies if empty...');
-    for (const title of vacancies) {
-      const [rows] = await connection.query(
-        'SELECT id FROM vacancies WHERE title = ?',
-        [title]
-      );
-      if (rows.length === 0) {
-        await connection.query('INSERT INTO vacancies (title) VALUES (?)', [
-          title
-        ]);
-        console.log(`Inserted vacancy: ${title}`);
-      }
+        console.log('Seeding vacancies if empty...');
+        for (const title of vacancies) {
+            const [rows] = await connection.query(
+                'SELECT id FROM vacancies WHERE title = ?',
+                [title]
+            );
+            if (rows.length === 0) {
+                await connection.query('INSERT INTO vacancies (title) VALUES (?)', [
+                    title
+                ]);
+                console.log(`Inserted vacancy: ${title}`);
+            }
+        }
+
+        console.log('Database setup complete!');
+    } catch (error) {
+        console.error('Error setting up database:', error);
+    } finally {
+        await connection.end();
     }
-
-    console.log('Database setup complete!');
-  } catch (error) {
-    console.error('Error setting up database:', error);
-  } finally {
-    await connection.end();
-  }
 }
 
 main();
