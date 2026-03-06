@@ -5,7 +5,7 @@ const path = require('path');
 // Basic env parser
 function loadEnv() {
   try {
-    const envPath = path.resolve(process.cwd(), '.env');
+    const envPath = path.resolve(process.cwd(), '.env.local');
     if (fs.existsSync(envPath)) {
       const data = fs.readFileSync(envPath, 'utf8');
       data.split('\n').forEach((line) => {
@@ -14,10 +14,10 @@ function loadEnv() {
           process.env[key.trim()] = value.trim();
         }
       });
-      console.log('Loaded .env');
+      console.log('Loaded .env.local');
     }
   } catch (e) {
-    console.log('Could not load .env, using defaults');
+    console.log('Could not load .env.local, using defaults');
   }
 }
 
