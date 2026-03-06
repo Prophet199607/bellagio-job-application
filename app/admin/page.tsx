@@ -65,7 +65,7 @@ export default function AdminLogin() {
           Admin Login
         </h1>
         <p className='text-slate-400 text-sm text-center mb-10 font-bold uppercase tracking-widest'>
-          Management Portal
+          Job Application Portal
         </p>
 
         {error && (
@@ -85,7 +85,7 @@ export default function AdminLogin() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className='w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-slate-900 focus:border-[#250026] focus:ring-1 focus:ring-[#250026]/20 outline-none transition-all placeholder:text-slate-300'
-              placeholder='admin / john@example.com'
+              placeholder='Username'
             />
           </div>
           <div>

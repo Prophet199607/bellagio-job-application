@@ -291,7 +291,7 @@ export default function AdminDashboard() {
                     <div className="absolute inset-0 border-4 border-[#250026]/10 rounded-full"></div>
                     <div className="absolute inset-0 border-4 border-[#250026] border-t-transparent rounded-full animate-spin"></div>
                 </div>
-                <p className="mt-4 text-[10px] font-black text-[#250026] uppercase tracking-[0.3em] animate-pulse">Authenticating</p>
+                <p className="mt-4 text-[11px] font-black text-[#250026] uppercase tracking-[0.3em] animate-pulse">Authenticating</p>
             </div>
         );
     }
@@ -320,7 +320,7 @@ export default function AdminDashboard() {
                         {activeTab === 'vacancies' && (
                             <button
                                 onClick={() => { resetForm(); setShowVacancyModal(true); }}
-                                className="px-4 py-2 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] active:scale-[0.98] transition-all flex items-center gap-2 uppercase tracking-widest text-[10px] shadow-lg shadow-[#250026]/10"
+                                className="px-4 py-2 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] active:scale-[0.98] transition-all flex items-center gap-2 uppercase tracking-widest text-[12px] shadow-lg shadow-[#250026]/10"
                             >
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                                 New Position
@@ -329,7 +329,7 @@ export default function AdminDashboard() {
                         {activeTab === 'users' && (
                             <button
                                 onClick={() => { resetUserForm(); setShowUserModal(true); }}
-                                className="px-4 py-2 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] active:scale-[0.98] transition-all flex items-center gap-2 uppercase tracking-widest text-[10px] shadow-lg shadow-[#250026]/10"
+                                className="px-4 py-2 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] active:scale-[0.98] transition-all flex items-center gap-2 uppercase tracking-widest text-[12px] shadow-lg shadow-[#250026]/10"
                             >
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
                                 Create Admin
@@ -358,7 +358,7 @@ export default function AdminDashboard() {
                                 { label: 'Recent', value: stats.applicationsThisMonth, color: 'text-blue-500' },
                             ].map((s, i) => (
                                 <div key={i} className="bg-slate-50 p-5 rounded-2xl border border-slate-100 hover:border-slate-200 transition-all group shadow-sm">
-                                    <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">{s.label}</p>
+                                    <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">{s.label}</p>
                                     <p className={`text-2xl font-black mt-1 tracking-tighter ${s.color}`}>{s.value}</p>
                                 </div>
                             ))}
@@ -411,11 +411,11 @@ export default function AdminDashboard() {
                                     <table className="w-full">
                                         <thead className="bg-slate-50">
                                             <tr>
-                                                <th className="text-left py-4 px-5 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Applicant</th>
-                                                <th className="text-left py-4 px-5 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Role</th>
-                                                <th className="text-left py-4 px-5 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Exp</th>
-                                                <th className="text-left py-4 px-5 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Date</th>
-                                                <th className="text-right py-4 px-5 text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Actions</th>
+                                                <th className="text-left py-4 px-5 text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">Applicant</th>
+                                                <th className="text-left py-4 px-5 text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">Role</th>
+                                                <th className="text-left py-4 px-5 text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">Exp</th>
+                                                <th className="text-left py-4 px-5 text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">Date</th>
+                                                <th className="text-right py-4 px-5 text-[12px] font-black text-slate-600 uppercase tracking-[0.2em]">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -423,10 +423,10 @@ export default function AdminDashboard() {
                                                 <tr key={app.id} onClick={() => setSelectedApp(app)} className={`cursor-pointer hover:bg-slate-50 transition-all ${selectedApp?.id === app.id ? 'bg-[#250026]/5' : ''}`}>
                                                     <td className="py-4 px-5">
                                                         <div className="font-bold text-sm text-slate-900">{app.first_name} {app.last_name}</div>
-                                                        <div className="text-[10px] text-slate-600 uppercase font-black">{app.email}</div>
+                                                        <div className="text-[12px] text-slate-600 uppercase font-black">{app.email}</div>
                                                     </td>
                                                     <td className="py-4 px-5 text-xs text-slate-500">{app.vacancy_title}</td>
-                                                    <td className="py-4 px-5"><span className="px-2 py-0.5 bg-[#250026]/10 rounded-md text-[10px] font-black text-[#250026] uppercase tracking-tighter">{app.total_experience} Yrs</span></td>
+                                                    <td className="py-4 px-5"><span className="px-2 py-0.5 bg-[#250026]/10 rounded-md text-[12px] font-black text-[#250026] uppercase tracking-tighter">{app.total_experience} Yrs</span></td>
                                                     <td className="py-4 px-5 text-xs text-slate-600">{new Date(app.applied_date).toLocaleDateString()}</td>
                                                     <td className="py-4 px-5 text-right">
                                                         <button
@@ -462,23 +462,23 @@ export default function AdminDashboard() {
                                     </div>
                                     <div className="space-y-4">
                                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Position</p>
+                                            <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Position</p>
                                             <p className="text-sm font-bold text-[#250026]">{selectedApp.vacancy_title}</p>
                                         </div>
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                                <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Exp</p>
+                                                <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Exp</p>
                                                 <p className="text-xs font-bold text-slate-700">{selectedApp.total_experience} Yrs</p>
                                             </div>
                                             <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                                <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Salary</p>
+                                                <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Salary</p>
                                                 <p className="text-xs font-bold text-slate-700">{selectedApp.expected_salary}</p>
                                             </div>
                                         </div>
 
                                         <div className="space-y-2">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Main Document</p>
-                                            <a href={selectedApp.cv_file} target="_blank" className="flex items-center gap-3 px-4 py-3 bg-[#250026] text-white font-black rounded-xl hover:bg-[#3d0040] transition-all uppercase tracking-widest text-[10px] shadow-lg shadow-[#250026]/10 w-full">
+                                            <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Main Document</p>
+                                            <a href={selectedApp.cv_file} target="_blank" className="flex items-center gap-3 px-4 py-3 bg-[#250026] text-white font-black rounded-xl hover:bg-[#3d0040] transition-all uppercase tracking-widest text-[12px] shadow-lg shadow-[#250026]/10 w-full">
                                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                                                 Download CV
                                             </a>
@@ -486,7 +486,7 @@ export default function AdminDashboard() {
 
                                         {/* Educational Qualifications */}
                                         <div className="space-y-2">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Educational Qualifications</p>
+                                            <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Educational Qualifications</p>
                                             <div className="space-y-2">
                                                 {(() => {
                                                     try {
@@ -496,15 +496,15 @@ export default function AdminDashboard() {
                                                                 <a key={idx} href={file} target="_blank" className="flex items-center justify-between px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl hover:border-[#250026]/20 transition-all group">
                                                                     <div className="flex items-center gap-3">
                                                                         <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                                                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Education Doc {idx + 1}</span>
+                                                                        <span className="text-[12px] font-bold text-slate-600 uppercase tracking-wider">Education Doc {idx + 1}</span>
                                                                     </div>
                                                                     <svg className="w-4 h-4 text-slate-300 group-hover:text-[#250026] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
                                                                 </a>
                                                             ));
                                                         }
-                                                        return <p className="text-[10px] italic text-slate-600 px-1">No educational documents uploaded.</p>;
+                                                        return <p className="text-[12px] italic text-slate-600 px-1">No educational documents uploaded.</p>;
                                                     } catch (e) {
-                                                        return <p className="text-[10px] italic text-slate-600 px-1">Error loading documents.</p>;
+                                                        return <p className="text-[12px] italic text-slate-600 px-1">Error loading documents.</p>;
                                                     }
                                                 })()}
                                             </div>
@@ -512,7 +512,7 @@ export default function AdminDashboard() {
 
                                         {/* Professional Qualifications */}
                                         <div className="space-y-2">
-                                            <p className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Professional Qualifications</p>
+                                            <p className="text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] px-1">Professional Qualifications</p>
                                             <div className="space-y-2">
                                                 {(() => {
                                                     try {
@@ -522,15 +522,15 @@ export default function AdminDashboard() {
                                                                 <a key={idx} href={file} target="_blank" className="flex items-center justify-between px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl hover:border-[#250026]/20 transition-all group">
                                                                     <div className="flex items-center gap-3">
                                                                         <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z" /></svg>
-                                                                        <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Professional Doc {idx + 1}</span>
+                                                                        <span className="text-[12px] font-bold text-slate-600 uppercase tracking-wider">Professional Doc {idx + 1}</span>
                                                                     </div>
                                                                     <svg className="w-4 h-4 text-slate-300 group-hover:text-[#250026] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
                                                                 </a>
                                                             ));
                                                         }
-                                                        return <p className="text-[10px] italic text-slate-600 px-1">No professional documents uploaded.</p>;
+                                                        return <p className="text-[12px] italic text-slate-600 px-1">No professional documents uploaded.</p>;
                                                     } catch (e) {
-                                                        return <p className="text-[10px] italic text-slate-600 px-1">Error loading documents.</p>;
+                                                        return <p className="text-[12px] italic text-slate-600 px-1">Error loading documents.</p>;
                                                     }
                                                 })()}
                                             </div>
@@ -544,10 +544,10 @@ export default function AdminDashboard() {
                             <table className="w-full">
                                 <thead className="bg-slate-50">
                                     <tr className="text-slate-600">
-                                        <th className="text-left py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Position</th>
+                                        <th className="text-left py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">Position</th>
 
-                                        <th className="text-left py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Status</th>
-                                        <th className="text-right py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Actions</th>
+                                        <th className="text-left py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">Status</th>
+                                        <th className="text-right py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -556,7 +556,7 @@ export default function AdminDashboard() {
                                             <td className="py-4 px-6 font-bold text-sm text-slate-900 uppercase">{v.title}</td>
 
                                             <td className="py-4 px-6">
-                                                <span className={`px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-tighter ${v.status === 'Available' ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
+                                                <span className={`px-2 py-1 rounded-md text-[12px] font-black uppercase tracking-tighter ${v.status === 'Available' ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
                                                     {v.status}
                                                 </span>
                                             </td>
@@ -581,9 +581,9 @@ export default function AdminDashboard() {
                                 <thead className="bg-slate-50">
                                     <tr className="text-slate-600">
 
-                                        <th className="text-left py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">ID</th>
-                                        <th className="text-left py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Role</th>
-                                        <th className="text-right py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">Actions</th>
+                                        <th className="text-left py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">ID</th>
+                                        <th className="text-left py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">Role</th>
+                                        <th className="text-right py-4 px-6 text-[12px] font-black uppercase tracking-[0.2em] text-slate-600">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -591,7 +591,7 @@ export default function AdminDashboard() {
                                         <tr key={u.id} className="hover:bg-slate-50 transition-all">
 
                                             <td className="py-4 px-6 text-xs font-bold text-slate-600 ">{u.username}</td>
-                                            <td className="py-4 px-6"><span className={`px-4 py-1 rounded-md text-[10px] font-black  tracking-widest ${u.role === 'admin' ? 'bg-[#250026] text-white' : 'bg-slate-100 text-slate-600'}`}>{u.role}</span></td>
+                                            <td className="py-4 px-6"><span className={`px-4 py-1 rounded-md text-[12px] font-black  tracking-widest ${u.role === 'admin' ? 'bg-[#250026] text-white' : 'bg-slate-100 text-slate-600'}`}>{u.role}</span></td>
                                             <td className="py-4 px-6 text-right">
                                                 <button onClick={() => setDeleteConfirm({ id: u.id, type: 'user' })} className="p-2 bg-red-50 hover:bg-red-100 rounded-lg text-red-600 transition-all">
                                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-4v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
@@ -617,12 +617,12 @@ export default function AdminDashboard() {
                         </div>
                         <form onSubmit={editingVacancy ? handleUpdateVacancy : handleCreateVacancy} className="space-y-5">
                             <div>
-                                <label className="block text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Job Title</label>
+                                <label className="block text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Job Title</label>
                                 <input type="text" required value={vacancyForm.title} onChange={(e) => setVacancyForm({ ...vacancyForm, title: e.target.value })} className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:border-[#250026] outline-none transition-all placeholder:text-slate-300" placeholder="e.g. Manager" />
                             </div>
                             {editingVacancy && (
                                 <div>
-                                    <label className="block text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Status</label>
+                                    <label className="block text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Status</label>
                                     <select value={vacancyForm.status} onChange={(e) => setVacancyForm({ ...vacancyForm, status: e.target.value as any })} className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm appearance-none cursor-pointer">
                                         <option value="Available" className="bg-white">Available</option>
                                         <option value="Not Available" className="bg-white">Not Available</option>
@@ -630,8 +630,8 @@ export default function AdminDashboard() {
                                 </div>
                             )}
                             <div className="flex gap-4 pt-6">
-                                <button type="button" onClick={() => { setShowVacancyModal(false); resetForm(); }} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[10px]">Cancel</button>
-                                <button type="submit" className="flex-1 py-3 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] uppercase tracking-widest text-[10px] shadow-lg shadow-[#250026]/10">
+                                <button type="button" onClick={() => { setShowVacancyModal(false); resetForm(); }} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[12px]">Cancel</button>
+                                <button type="submit" className="flex-1 py-3 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] uppercase tracking-widest text-[12px] shadow-lg shadow-[#250026]/10">
                                     {editingVacancy ? 'Save' : 'Post'}
                                 </button>
                             </div>
@@ -649,15 +649,15 @@ export default function AdminDashboard() {
                         </div>
                         <form onSubmit={handleCreateUser} className="space-y-5">
                             <div>
-                                <label className="block text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Username</label>
+                                <label className="block text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Username</label>
                                 <input type="text" required value={userForm.username} onChange={(e) => setUserForm({ ...userForm, username: e.target.value })} className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:border-[#250026] outline-none transition-all placeholder:text-slate-300" placeholder="johndoe" />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Password</label>
+                                <label className="block text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Password</label>
                                 <input type="password" required value={userForm.password} onChange={(e) => setUserForm({ ...userForm, password: e.target.value })} className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:border-[#250026] outline-none transition-all placeholder:text-slate-300" placeholder="••••••••" />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Role</label>
+                                <label className="block text-[12px] font-black text-slate-600 uppercase tracking-[0.2em] mb-3 ml-1">Role</label>
                                 <select
                                     value={userForm.role}
                                     onChange={(e) => setUserForm({ ...userForm, role: e.target.value })}
@@ -668,8 +668,8 @@ export default function AdminDashboard() {
                                 </select>
                             </div>
                             <div className="flex gap-4 pt-6">
-                                <button type="button" onClick={() => { setShowUserModal(false); resetUserForm(); }} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[10px]">Cancel</button>
-                                <button type="submit" className="flex-1 py-3 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] uppercase tracking-widest text-[10px] shadow-lg shadow-[#250026]/10">Create Account</button>
+                                <button type="button" onClick={() => { setShowUserModal(false); resetUserForm(); }} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[12px]">Cancel</button>
+                                <button type="submit" className="flex-1 py-3 bg-[#250026] text-white font-black rounded-lg hover:bg-[#3d0040] uppercase tracking-widest text-[12px] shadow-lg shadow-[#250026]/10">Create Account</button>
                             </div>
                         </form>
                     </div>
@@ -682,7 +682,7 @@ export default function AdminDashboard() {
                         <div className="absolute inset-0 border-4 border-[#250026]/10 rounded-full"></div>
                         <div className="absolute inset-0 border-4 border-[#250026] border-t-transparent rounded-full animate-spin"></div>
                     </div>
-                    <p className="mt-4 text-[10px] font-black text-[#250026] uppercase tracking-[0.3em] animate-pulse">Syncing Data</p>
+                    <p className="mt-4 text-[12px] font-black text-[#250026] uppercase tracking-[0.3em] animate-pulse">Syncing Data</p>
                 </div>
             )}
 
@@ -695,14 +695,14 @@ export default function AdminDashboard() {
                         <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight mb-2">Confirm Delete</h3>
                         <p className="text-sm text-slate-500 font-bold mb-8">Are you sure you want to permanently remove this {deleteConfirm.type}? This action cannot be undone.</p>
                         <div className="flex gap-3">
-                            <button onClick={() => setDeleteConfirm(null)} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[10px]">Back</button>
+                            <button onClick={() => setDeleteConfirm(null)} className="flex-1 py-3 border border-slate-200 text-slate-600 font-black rounded-lg hover:bg-slate-50 uppercase tracking-widest text-[12px]">Back</button>
                             <button
                                 onClick={() => {
                                     if (deleteConfirm.type === 'vacancy') handleDeleteVacancy(deleteConfirm.id);
                                     else if (deleteConfirm.type === 'user') handleDeleteUser(deleteConfirm.id);
                                     else if (deleteConfirm.type === 'application') handleDeleteApplication(deleteConfirm.id);
                                 }}
-                                className="flex-1 py-3 bg-red-600 text-white font-black rounded-lg hover:bg-red-700 uppercase tracking-widest text-[10px] shadow-lg shadow-red-600/10"
+                                className="flex-1 py-3 bg-red-600 text-white font-black rounded-lg hover:bg-red-700 uppercase tracking-widest text-[12px] shadow-lg shadow-red-600/10"
                             >
                                 Delete
                             </button>
