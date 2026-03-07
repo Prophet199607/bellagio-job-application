@@ -73,6 +73,7 @@ async function main() {
         cv_file VARCHAR(255) NOT NULL,
         educational_files TEXT NOT NULL,
         professional_files TEXT,
+        approval INT DEFAULT 0,
         applied_date DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (vacancy_id) REFERENCES vacancies(id) ON DELETE SET NULL
       );

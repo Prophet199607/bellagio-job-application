@@ -27,6 +27,16 @@ export async function GET() {
             AND YEAR(applied_date) = YEAR(CURRENT_DATE())
         `);
 
+        // Approved applications
+        const [approvedApps] = await pool.query<RowDataPacket[]>(
+            'SELECT COUNT(*) as count FROM applied WHERE approval = 1'
+        );
+
+        // Rejected applications
+        const [rejectedApps] = await pool.query<RowDataPacket[]>(
+            'SELECT COUNT(*) as count FROM applied WHERE approval = 2'
+        );
+
         // Applications by vacancy
         const [appsByVacancy] = await pool.query<RowDataPacket[]>(`
             SELECT 
@@ -43,6 +53,8 @@ export async function GET() {
             totalVacancies: totalVacancies[0].count,
             availableVacancies: availableVacancies[0].count,
             applicationsThisMonth: thisMonth[0].count,
+            totalApproved: approvedApps[0].count,
+            totalRejected: rejectedApps[0].count,
             applicationsByVacancy: appsByVacancy
         });
     } catch (error) {

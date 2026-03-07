@@ -7,7 +7,10 @@ export async function GET() {
     try {
         const [rows] = await pool.query<RowDataPacket[]>(`
             SELECT 
-                a.*,
+                a.id, a.first_name, a.last_name, a.email, a.phone, a.address, 
+                a.age_range, a.gender, a.total_experience, a.expected_salary, 
+                a.vacancy_id, a.cv_file, a.educational_files, a.professional_files,
+                a.approval as approval, a.email_send, a.applied_date,
                 v.title as vacancy_title,
                 v.location as vacancy_location,
                 v.status as vacancy_status
@@ -40,6 +43,26 @@ export async function DELETE(req: Request) {
         console.error('Error deleting application:', error);
         return NextResponse.json(
             { error: 'Failed to delete application' },
+            { status: 500 }
+        );
+    }
+}
+
+export async function PUT(req: Request) {
+    try {
+        const body = await req.json();
+        const { id, approval } = body;
+
+        if (!id || approval === undefined) {
+            return NextResponse.json({ error: 'ID and approval status are required' }, { status: 400 });
+        }
+
+        await pool.query('UPDATE applied SET approval = ? WHERE id = ?', [approval, id]);
+        return NextResponse.json({ message: 'Application status updated successfully' });
+    } catch (error) {
+        console.error('Error updating application status:', error);
+        return NextResponse.json(
+            { error: 'Failed to update application status' },
             { status: 500 }
         );
     }
